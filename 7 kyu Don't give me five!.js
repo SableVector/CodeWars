@@ -1,33 +1,24 @@
-// Don't give me five!
-// In this kata you get the start number and the end number of a region and should return the count of all numbers except numbers with a 5 in it. The start and the end number are both inclusive!
+// There was a test in your class and you passed it. Congratulations!
+// But you're an ambitious person. You want to know if you're better than the average student in your class.
 
-// Examples:
+// You receive an array with your peers' test scores. Now calculate the average and compare your score!
 
-// 1,9 -> 1,2,3,4,6,7,8,9 -> Result 8
-// 4,17 -> 4,6,7,8,9,10,11,12,13,14,16,17 -> Result 12
-// The result may contain fives. ;-)
-// The start number will always be smaller than the end number. Both numbers can be also negative!
+// Return True if you're better, else False!
 
-// I'm very curious for your solutions and the way you solve it. Maybe someone of you will find an easy pure mathematics solution.
+// Note:
+// Your points are not included in the array of your class's points. For calculating the average point you may add your point to the given array!
 
-// Have fun coding it and please don't forget to vote and rank this kata! :-)
+function betterThanAverage(classPoints, yourPoints) {
 
-// I have also created other katas. Take a look if you enjoyed this kata!
+    const allPoints = classPoints.concat(yourPoints);
+    let sum = 0;
 
-function dontGiveMeFive(start, end) {
-    let arr = [];
-    let counter = 0;
+    allPoints.forEach(studentPoints => sum += studentPoints);
 
-    for (let i = start; i <= end; i++) {
-        arr.push(i);
-    }
+    const res = (sum / allPoints.length) < yourPoints ? true : false;
 
-    arr.forEach(num => {
-        const isFive = num.toString().split('').every(item => item != 5);
+    return res;
 
-        isFive ? counter++ : counter;
-    });
-
-    return counter;
 }
-console.log(dontGiveMeFive(4, 17)); //12
+
+console.log(betterThanAverage([100, 40, 34, 57, 29, 72, 57, 88], 75));; // true
