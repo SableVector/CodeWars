@@ -15,19 +15,10 @@
 // I have also created other katas. Take a look if you enjoyed this kata!
 
 function dontGiveMeFive(start, end) {
-    let arr = [];
     let counter = 0;
-
     for (let i = start; i <= end; i++) {
-        arr.push(i);
+        if (!/5/.test(i)) counter++;
     }
-
-    arr.forEach(num => {
-        const isFive = num.toString().split('').every(item => item != 5);
-
-        isFive ? counter++ : counter;
-    });
-
     return counter;
 }
 console.log(dontGiveMeFive(4, 17)); //12
