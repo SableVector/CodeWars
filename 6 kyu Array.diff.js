@@ -7,12 +7,7 @@
 
 // arrayDiff([1,2,2,2,3],[2]) == [1,3]
 const arrayDiff = (a, b) => {
-    if (!b.length) return a;
-
-    return a.reduce((acc, item) => {
-        b.every(element => element !== item) ? acc.push(item) : acc;
-        return acc;
-    }, []);
+    return a.filter(item => !b.includes(item));
 }
 
 console.log(arrayDiff([1, 2, 3], [1, 2])); //[3]
