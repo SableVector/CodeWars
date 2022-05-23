@@ -33,30 +33,20 @@ function transpose(song, interval) {
     const notesLow = ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'];
 
     return song.reduce((acc, item) => {
-        let indexItem = notesLow.indexOf(item) || notesHigher.indexOf(item);
+        let indexItem = notesLow.indexOf(item) === -1 ? notesHigher.indexOf(item) : notesLow.indexOf(item);
+        const indexInterval = indexItem + interval;
 
-        console.log(indexItem);
+        indexItem += indexInterval >= 12
+            ? interval - 12 : indexInterval < 0
+                ? interval + 12 : interval;
 
+        acc.push(notesHigher[indexItem]);
 
-
-
-
-
-
-
-
-        // if (indexItem + interval >= 12) {
-        //     indexItem += interval - 12;
-        // } else {
-        //     indexItem += interval;
-        // }
-
-        // console.log(indexItem);
-        // acc.push(notesHigher[indexItem]);
-
-        // return acc;
+        return acc;
     }, []);
 
 }
 
-transpose(['A#', 'Gb'], 2); // F F#
+res = transpose(['C', 'C', 'C#', 'D', 'F', 'D', 'F', 'D', 'D', 'C#', 'C', 'G', 'C', 'C'], 4); // ['E', 'E', 'F', 'F#', 'A', 'F#', 'A', 'F#', 'F#', 'F', 'E', 'B', 'E', 'E' ]
+console.log(res);
+// transpose(['A#', 'C#', 'D', 'D#', 'A#', 'F#', 'D#'], -6); // ['E', 'G', 'G#', 'A', 'E', 'C', 'A'
